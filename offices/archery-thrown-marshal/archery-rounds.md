@@ -10,7 +10,7 @@ Archery events may include any form of safe competition you can imagine, in keep
 
 Only scores from official SCA events or practices may be submitted for Kingdom or Inter-Kingdom competitions or membership in the Drachenwald Company of Archers. 
 For a practice to qualify as an official SCA practice, it must be approved by the local Seneschal and run by an SCA Target Archery Marshal. It must be open to all members of the SCA without requiring membership in any other organisation or payment of any fees, barring venue hire.
-In the Drachenwald archery handbook, you will find the rules for Drachenwald's official competitions. ([Signed PDF version]({{ site.baseurl }}{% link offices/archery-thrown-marshal/files/drachenwald_target_archery_handbook_0.pdf %}))
+In the Drachenwald archery handbook, you will find the rules for Drachenwald's official competitions. ([Signed PDF version](https://drive.google.com/file/d/1z9uckaf75NsrQunmCFzadXE5awng1QjZ/view?usp=drive_link))
 
 The [archery round quick reference]({{ site.baseurl }}{% link offices/archery-thrown-marshal/files/archery-round-quick-reference.pdf %}) (PDF) provides a quick reminder of arrow counts, distances, and ranking scores for the common competition formats in Drachenwald.
 
