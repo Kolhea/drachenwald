@@ -41,15 +41,15 @@ macOS
 
 **Docker:** Download and run [Docker Desktop](https://www.docker.com/products/docker-desktop).
 
-Windows 10 Pro
---------------
+Windows 11 (and Windows 10 version 1903 or later)
+-------------------------------------------------
 
 **git:** Download and install [Git for Windows](https://git-scm.com/download/win).
 
-**Windows 10 Pro:** Download and run [Docker Desktop](https://www.docker.com/products/docker-desktop).
+**Docker:** Download and run [Docker Desktop](https://www.docker.com/products/docker-desktop). Docker Desktop supports Windows 11 Home and Pro via the built-in WSL 2 backend.
 
-Windows 10 Home and previous
-----------------------------
+Older Windows
+-------------
 
 **git:** Download and install [Git for Windows](https://git-scm.com/download/win).
 
@@ -87,6 +87,17 @@ Choose an editor to view and edit the content of the site
 
 You now have all the tools to start copying the site from GitHub, and editing it on your own machine.
 
+Create your own fork of the website
+=============================
+
+A "fork" is your own personal copy of the repository on GitHub. You make changes in your fork, then submit them back to the main repository via a Pull Request.
+
+1. Go to the [project page on GitHub](https://github.com/drachenwald/drachenwald).
+2. Click the **Fork** button in the top-right corner of the page.
+3. On the "Create a new fork" page, leave the settings as they are and click **Create fork**.
+
+GitHub will create a copy of the repository under your own account (e.g. `https://github.com/<your-username>/drachenwald`).
+
 Get your clone of the website
 =============================
 
@@ -94,14 +105,20 @@ Get your clone of the website
 
 **macOS:** Open a terminal window.
 
-Go to the [project page on GitHub](https://github.com/drachenwald/drachenwald). Click on the "Code" button, and see the "Local" tab in that box, and copy the link for "SSH".
+Go to **your fork** of the project on GitHub (e.g. `https://github.com/<your-username>/drachenwald`). Click on the **Code** button, see the **Local** tab in that box, and copy the link for **SSH**.
 
 In your command line window, run:
 
 ```
-git clone git@github.com:drachenwald/drachenwald.git
+git clone git@github.com:<your-username>/drachenwald.git
 
 cd drachenwald
+```
+
+Then add the original repository as a remote called `upstream`, so you can pull in future updates:
+
+```
+git remote add upstream git@github.com:drachenwald/drachenwald.git
 ```
 
 Start the Jekyll development server
@@ -134,10 +151,12 @@ __NOTE: When you're editting the site, ignore the _site directory, this director
 
 __NOTE: All your filenames must use lower case only.__ Mixed case filenames introduce errors in systems that are case sensitive. Avoid entirely by using only lower case.
 
-To get the latest changes from GitHub:
+To get the latest changes from the main repository into your fork:
 
 ```
-git pull
+git fetch upstream
+git checkout main
+git merge upstream/main
 ```
 
 To create a new branch (which acts as a parallel universe copy of the site) for your changes, and switch to it:
@@ -147,24 +166,24 @@ git branch <branch name>
 git checkout <branch name>
 ```
 
-When you make changes, to commit them and push them to GitHub:
+When you make changes, to commit them and push them to your fork on GitHub:
 
 ```
 git add .
 git commit -m "<message for the git log>"
-git push
+git push origin <branch name>
 ```
 
-Once you've pushed changes in your own branch, go to GitHub and create a Pull Request (there will be a button).
+Once you've pushed changes to your fork, go to your fork's page on GitHub and click the **Compare & pull request** button to open a Pull Request back to the main `drachenwald/drachenwald` repository.
 
-If you keep using the same branch for future changes, bring it up to date with the staging branch by frequently running:
+If you keep using the same branch for future changes, bring it up to date with the main repository by frequently running:
 
 ```
-git checkout staging
-git pull
+git fetch upstream
+git checkout main
+git merge upstream/main
 git checkout <branch name>
-git pull
-git merge staging
+git merge main
 ```
 
 Conventions
