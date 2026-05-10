@@ -37,36 +37,45 @@ These instructions assume you have full permissions on your own machine to downl
 macOS
 -----
 
-**git:** Type `git` at the comment line; if it's not already installed, you will be prompted to install Xcode Command Line Tools.
+**git:** Type `git` at the command line; if it's not already installed, you will be prompted to install Xcode Command Line Tools.
 
 **Docker:** Download and run [Docker Desktop](https://www.docker.com/products/docker-desktop).
 
 Windows 11 (and Windows 10 version 1903 or later)
 -------------------------------------------------
 
-**git:** Download and install [Git for Windows](https://git-scm.com/download/win).
+**git:** Download and install [Git for Windows](https://git-scm.com/download/win). This also installs Git Bash, the command-line window you'll use in later steps.
 
 **Docker:** Download and run [Docker Desktop](https://www.docker.com/products/docker-desktop). Docker Desktop supports Windows 11 Home and Pro via the built-in WSL 2 backend.
 
 Older Windows
 -------------
 
-**git:** Download and install [Git for Windows](https://git-scm.com/download/win).
+**git:** Download and install [Git for Windows](https://git-scm.com/download/win). This also installs Git Bash, the command-line window you'll use in later steps.
 
 **Ruby and Jekyll:** Install using the [instructions on the Jekyll site](https://jekyllrb.com/docs/installation/windows/).
+
+Linux
+-----
+
+**git:** Git is available in the package manager for all major distributions. See [instructions for your distro on the Git site](https://git-scm.com/download/linux).
+
+**Docker:** Follow the [Docker Engine install guide for your distro](https://docs.docker.com/engine/install/) (Ubuntu, Debian, Fedora, and others are covered). Alternatively, [Docker Desktop for Linux](https://docs.docker.com/desktop/setup/install/linux/) is available if you prefer a graphical interface.
+
+**Ruby and Jekyll** (if not using Docker): Follow the [Jekyll install guide for Linux](https://jekyllrb.com/docs/installation/other-linux/).
 
 ### Jekyll
 - - - - -
 
 If you have not used Jekyll before, [see the Jekyll website for a ground-up intro](https://jekyllrb.com/tutorials/convert-site-to-jekyll/#what-is-a-jekyll-website).
 
-**TL;dr**: 
+The short version:
 
-* You create content: mainly text in Markdown. 
-* Add images or data. 
-* Save content in appropriate folders.  
-* Commit (and push) the content to GitHub, using Git commands
-* Run Jekyll from the command line.  
+* You create content: mainly text in Markdown.
+* Add images or data.
+* Save content in appropriate folders.
+* Commit (and push) the content to GitHub, using Git commands.
+* Run Jekyll from the command line.
 
 Jekyll creates the HTML versions of the pages, following the instructions in the theme to provide the layout, formatting and navigation. **You don't need to edit any HTML manually.**
 - - - - -
@@ -76,7 +85,7 @@ Set yourself up on GitHub with an SSH key
 
 Set up an account on [GitHub][].
 
-Create an SSH key and add the public key to your GitHub profile. [Instructions on GitHub.](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+Create an SSH key and add the public key to your GitHub profile. An SSH key is a pair of files that lets your computer connect to GitHub without needing your password every time. [Instructions on GitHub.](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 
 Choose an editor to view and edit the content of the site
@@ -103,7 +112,7 @@ Get your clone of the website
 
 **Windows:** Open Git Bash from your start menu.
 
-**macOS:** Open a terminal window.
+**Mac and Linux:** Open a terminal window.
 
 Go to **your fork** of the project on GitHub (e.g. `https://github.com/<your-username>/drachenwald`). Click on the **Code** button, see the **Local** tab in that box, and copy the link for **SSH**.
 
@@ -127,7 +136,7 @@ Start the Jekyll development server
 **If you installed Docker Desktop earlier,** type:
 
 ```
-docker-compose up
+docker compose up
 ```
 
 Wait for this to install the needed Docker image and libraries. (This will be faster on subsequent runs.)
@@ -188,7 +197,31 @@ git merge main
 
 Conventions
 ===========
-* link to other pages using this format:  {{ site.baseurl }}{% link images/heraldry/gotviktrans.gif %} 
+* link to other pages using this format:  {{ site.baseurl }}{% link images/heraldry/gotviktrans.gif %}
+
+
+Adding files (PDFs, images, etc.)
+==================================
+
+To add a downloadable file such as a PDF, place it in a `files/` subfolder next to the relevant page. For example, a PDF for the archery office lives at:
+
+```
+offices/archery-thrown-marshal/files/archery-round-quick-reference.pdf
+```
+
+Then link to it from a Markdown page using the `link` tag:
+
+```
+[link text]({{ site.baseurl }}{% link offices/archery-thrown-marshal/files/archery-round-quick-reference.pdf %})
+```
+
+A few things to remember:
+* Use lower case filenames with hyphens instead of spaces (e.g. `my-document.pdf`, not `My Document.pdf`).
+* The `files/` subfolder is recommended for downloadable files.
+* Images used within page content go in the `images/` folder at the top level of the site, organised by topic.
+* Commit and push the file the same way as any other change.
+* If you add a `link` tag pointing to a file that doesn't exist yet, Jekyll will refuse to build the site. Make sure the file is in place before adding the link, or add both in the same commit.
+* Likewise, if you remove a file, first check that no pages link to it. Jekyll will fail to build if a `link` tag points to a missing file, which means that any changes to the website would not be available before the leftover links are removed as well.
 
 
 Git References
